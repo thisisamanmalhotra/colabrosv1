@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot name="platform">
+
+<link name="world"/>
+
+<joint name="platform_joint" type="fixed">
+    <parent link="world"/>
+    <origin rpy="3.14 0 0" xyz="0.0 0.0 0.02"/>
+    <child link="platform_link"/>
+</joint>
+
+<link name="platform_link">
+  <collision>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://multimap_map_merge/meshes/no_ramp.stl" scale="0.0018 0.0018 0.0018"/>
+    </geometry>
+  </collision>
+
+  <visual>
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
+    <geometry>
+     <mesh filename="package://multimap_map_merge/meshes/no_ramp.stl" scale="0.0018 0.0018 0.0018"/>
+    </geometry>
+  </visual>
+
+  <inertial>
+    <origin xyz="0 0 0.0" rpy="0 0 0" />
+    <mass value="1" />
+    <inertia
+      ixx="0.001" ixy="0.0"  ixz="0.0"
+      iyy="0.001" iyz="0.0"
+      izz="0.001" />
+  </inertial>
+  </link>
+
+<gazebo reference="platform_link">
+  <!-- <material>Gazebo/Yellow</material> -->
+      <static>true</static>
+    <turnGravityOff>true</turnGravityOff>
+    <mu1>5</mu1>
+    <mu2>5</mu2>
+</gazebo>
+
+</robot>

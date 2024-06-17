@@ -1,0 +1,39 @@
+How to build
+    $ cd catkin_ws # this should be your actual catkin_ws path
+    $ catkin_make 
+
+if fail during building, due to dependency,  install using following commands and then build again
+    $ rosdep install --from-paths src --ignore-src -r -y
+
+To start simulation, open 3 terminal
+    1. 1st terminal, launch platform
+        $ cd catkin_ws # this should be your actual catkin_ws path
+        $ source devel/setup.bash 
+        $ roslaunch multimap_map_merge platform_spawn.launch
+
+    2. 2nd terminal, launch two robots
+        $ cd catkin_ws # this should be your actual catkin_ws path
+        $ source devel/setup.bash 
+        $ roslaunch multimap_map_merge multi_robot.launch
+
+    3. 3rd terminal, launch mapping and multi_map merge
+        $ cd catkin_ws # this should be your actual catkin_ws path
+        $ source devel/setup.bash 
+        $ roslaunch multimap_map_merge multi_map.launch
+
+TO DO MAPPING, you need two more terminal to move the robots, you need to control robot using teleop_twist_keyboard one by one
+    4. 4th terminal
+        $ cd catkin_ws # this should be your actual catkin_ws path
+        $ source devel/setup.bash 
+        $ rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=tb3_0/cmd_vel
+
+    5. 5th terminal
+        $ cd catkin_ws # this should be your actual catkin_ws path
+        $ source devel/setup.bash 
+        $ rosrun teleop_twist_keyboard teleop_twist_keyboard.py cmd_vel:=tb3_1/cmd_vel
+
+How to change platform SLT file,
+    1. paste your stl file in catkin_ws/src/multimap_map_merge/meshes/
+    2. Edit file catkin_ws/src/multimap_map_merge/urdf/platform.urdf , line 16 and 23 with the new name of the stl
+
+
